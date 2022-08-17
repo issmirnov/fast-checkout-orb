@@ -9,14 +9,20 @@ filters: &filters
 
 jobs:
   # Create a job to test the commands of your orbs.
-  # You may want to add additional validation steps to ensure the commands are working as expected.
   command-tests:
     docker:
       - image: cimg/base:current
     steps:
-      - checkout
-      # Run your orb's commands to validate them.
-      - fast-checkout/greet
+      # Note: we deliberately DO NOT have the standard "- checkout" step, as this orb replace it
+      - fast-checkout/get:
+          repo-uri: "https://github.com/issmirnov/fast-checkout-orb.git"
+          branch: "main"
+          sparse-paths: "src/ README.md"
+      - run:
+          name: use checked out files
+          command: |
+            ls src/
+
 workflows:
   test-deploy:
     jobs:
@@ -25,6 +31,8 @@ workflows:
           filters: *filters
       - orb-tools/pack:
           filters: *filters
+          requires:
+            - command-tests # force this job to run later, so that checkout check doesn't fail
       - orb-tools/publish:
           orb-name: issmirnov/fast-checkout
           vcs-type: << pipeline.project.type >>

@@ -1,15 +1,12 @@
-# Orb Template
+# Fast Checkout Orb
 
 
 [![CircleCI Build Status](https://circleci.com/gh/issmirnov/fast-checkout-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/issmirnov/fast-checkout-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/issmirnov/fast-checkout.svg)](https://circleci.com/orbs/registry/orb/issmirnov/fast-checkout) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/issmirnov/fast-checkout-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
+This orb is meant as a replacement for the builtin CircleCI "checkout" step. It uses git sparse-checkout under the hood, which
+can drastically speed up operations on large monorepos with huge commit histories and multiple unrelated folders.
 
-
-A project template for Orbs.
-
-This repository is designed to be automatically ingested and modified by the CircleCI CLI's `orb init` command.
-
-_**Edit this area to include a custom title and description.**_
+In once case study, it dropped clone time from 3 minutes to 5 seconds for a 6gb repo of about 3,600 files.
 
 ---
 
@@ -24,6 +21,7 @@ _**Edit this area to include a custom title and description.**_
 We welcome [issues](https://github.com/issmirnov/fast-checkout-orb/issues) to and [pull requests](https://github.com/issmirnov/fast-checkout-orb/pulls) against this repository!
 
 ### How to Publish An Update
+
 1. Merge pull requests with desired changes to the main branch.
     - For the best experience, squash-and-merge and use [Conventional Commit Messages](https://conventionalcommits.org/).
 2. Find the current version of the orb.

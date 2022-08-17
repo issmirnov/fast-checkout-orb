@@ -1,0 +1,32 @@
+description: >
+  Using optimized git commands, quickly get the repo and check out branch.
+parameters:
+  branch:
+    type: string
+    default: "master"
+    description: "Name of branch to check out"
+  repo-uri:
+    type: string
+    description: "Valid git clone URI. Can be SSH or HTTPS. You can use $CIRCLE_REPOSITORY_URL as well."
+  sparse-paths:
+    type: string
+    description: "List of paths from the root of the repo that will be checked out."
+
+steps:
+  # - run:
+  #     name: Assert that project directory is not in use
+  #     command: |
+  #       pwd
+  #       ls ~/project || true
+  #       [ -d "~/project" ] && echo "WARNING: Directory ~/project already exists! Did you use the 'checkout' step?"
+  #       exit 1
+  - run:
+      name: Fast Checkout
+      command: |
+        mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+        git clone --no-checkout --filter=blob:none <<parameters.repo-uri>> ~/project
+        cd ~/project
+        git sparse-checkout init --cone
+        git sparse-checkout set <<parameters.sparse-paths>>
+        git read-tree -mu HEAD
+        git checkout <<parameters.branch>>
