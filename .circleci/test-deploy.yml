@@ -31,6 +31,8 @@ workflows:
           filters: *filters
       - orb-tools/pack:
           filters: *filters
+          requires:
+            - command-tests # force this job to run later, so that checkout check doesn't fail
       - orb-tools/publish:
           orb-name: issmirnov/fast-checkout
           vcs-type: << pipeline.project.type >>
