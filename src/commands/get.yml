@@ -13,13 +13,13 @@ parameters:
     description: "List of paths from the root of the repo that will be checked out."
 
 steps:
-  - run:
-      name: Assert that project directory is not in use
-      command: |
-        pwd
-        ls -/project || true
-        [ -d "~/project" ] && echo "WARNING: Directory ~/project already exists! Did you use the 'checkout' step?"
-        exit 1
+  # - run:
+  #     name: Assert that project directory is not in use
+  #     command: |
+  #       pwd
+  #       ls ~/project || true
+  #       [ -d "~/project" ] && echo "WARNING: Directory ~/project already exists! Did you use the 'checkout' step?"
+  #       exit 1
   - run:
       name: Fast Checkout
       command: |
