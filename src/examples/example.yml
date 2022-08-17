@@ -1,13 +1,21 @@
 description: >
-  Sample example description.
+  Demo on pulling repo and using files
 # Provide a use-case based example for using this orb.
 # Everything in the `usage` section will be displayed in the orb registry.
 # Comments are not retained.
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.2.3
+    fast-checkout: issmirnov/fast-checkout@0.0.1
   workflows:
-    use-my-orb:
+    build-large-repo:
       jobs:
-        - <orb-name>/<job-name>
+        - get-repo-and-list:
+            steps:
+              run:
+                - fast-checkout/get:
+                    repo-uri: https://github.com/issmirnov/fast-checkout-orb.git
+                    branch: master
+                    sparse-paths: "src/ README.md"
+                - name: use checked out files
+                  command: ls src/

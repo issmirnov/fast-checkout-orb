@@ -16,7 +16,7 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - fast-checkout/greet
+      - fast-checkout/get
 workflows:
   test-deploy:
     jobs:
