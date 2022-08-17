@@ -18,7 +18,7 @@ workflows:
           filters: *filters
       - orb-tools/publish:
           orb-name: issmirnov/fast-checkout
-          pub-type: dev
+          # pub-type: dev # change this to dev if you need to iterate
           vcs-type: << pipeline.project.type >>
           requires:
             [orb-tools/lint, orb-tools/review, orb-tools/pack]
