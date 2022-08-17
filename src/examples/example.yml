@@ -15,7 +15,7 @@ usage:
               run:
                 - fast-checkout/get:
                     repo-uri: https://github.com/issmirnov/fast-checkout-orb.git
-                    branch: master
+                    branch: main
                     sparse-paths: "src/ README.md"
                 - name: use checked out files
                   command: ls src/
