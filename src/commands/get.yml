@@ -14,6 +14,11 @@ parameters:
 
 steps:
   - run:
+      name: Assert that project directory is not in use
+      command: |
+        [ -d "~/project" ] && echo "WARNING: Directory ~/project already exists! Did you use the 'checkout' step?"
+        exit 1
+  - run:
       name: Fast Checkout
       command: |
         mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts

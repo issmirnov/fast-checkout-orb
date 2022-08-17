@@ -14,6 +14,7 @@ jobs:
       - image: cimg/base:current
     steps:
       # Note: we deliberately DO NOT have the standard "- checkout" step, as this orb replace it
+      - checkout
       - fast-checkout/get:
           repo-uri: "https://github.com/issmirnov/fast-checkout-orb.git"
           branch: "main"
