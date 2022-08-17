@@ -6,7 +6,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    fast-checkout: issmirnov/fast-checkout@0.0.1
+    fast-checkout: issmirnov/fast-checkout@dev:alpha
   workflows:
     build-large-repo:
       jobs:
