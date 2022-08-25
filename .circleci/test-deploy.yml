@@ -15,7 +15,7 @@ jobs:
     steps:
       # Note: we deliberately DO NOT have the standard "- checkout" step, as this orb replace it
       - fast-checkout/get:
-          repo-uri: "https://github.com/issmirnov/fast-checkout-orb.git"
+          repo-uri: "${CIRCLE_REPOSITORY_URL}"
           branch: "main"
           sparse-paths: "src/ README.md"
       - run:
