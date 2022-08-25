@@ -15,7 +15,7 @@ jobs:
     steps:
       # Note: we deliberately DO NOT have the standard "- checkout" step, as this orb replace it
       - fast-checkout/get:
-          repo-uri: "${CIRCLE_REPOSITORY_URL}"
+          # repo-uri: "${CIRCLE_REPOSITORY_URL}" # DO NOT SUBMIT - unset default and see if it still works
           branch: "main"
           sparse-paths: "src/ README.md"
       - run:
