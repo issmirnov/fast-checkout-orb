@@ -25,8 +25,8 @@ steps:
       name: Fast Checkout
       command: |
         mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-        git clone --no-checkout --filter=blob:none <<parameters.repo-uri>> ~/project
-        cd ~/project
+        git clone --no-checkout --filter=blob:none <<parameters.repo-uri>> << pipeline.parameters.workingdir >>
+        cd << pipeline.parameters.workingdir >>
         git sparse-checkout init --cone
         git sparse-checkout set <<parameters.sparse-paths>>
         git read-tree -mu HEAD
