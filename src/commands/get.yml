@@ -12,6 +12,10 @@ parameters:
   sparse-paths:
     type: string
     description: "List of paths from the root of the repo that will be checked out."
+  working-directory:
+    type: string
+    default: "~/project"
+    description: "Directory to clone the repo into. If you set working_directory on your job, set this param here as well."
 
 steps:
   # - run:
@@ -25,8 +29,8 @@ steps:
       name: Fast Checkout
       command: |
         mkdir -p ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
-        git clone --no-checkout --filter=blob:none <<parameters.repo-uri>> ~/project
-        cd ~/project
+        git clone --no-checkout --filter=blob:none <<parameters.repo-uri>> << parameters.working-directory >>
+        cd << parameters.working-directory >>
         git sparse-checkout init --cone
         git sparse-checkout set <<parameters.sparse-paths>>
         git read-tree -mu HEAD
